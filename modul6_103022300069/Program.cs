@@ -11,6 +11,7 @@ class Program
         new SayaTubeVideo("Thor"), new SayaTubeVideo("Loki"), new SayaTubeVideo("Supermen"),
         new SayaTubeVideo("Joker") };
 
+        // Test berhasil
         for (int i = 0; i < film.Length; i++)
         {
             Random rand = new Random();
@@ -18,7 +19,24 @@ class Program
             film[i].IncreasePlayCount(playCount);
             user.AddVideo(film[i]);
         }
-
         user.PrintAllVideoPlaycount();
+
+        // Test prekondisi gagal judul
+        SayaTubeVideo gagalVideo = new SayaTubeVideo(null);
+
+        // Test prekondisi penambahan max playcount
+        film[2].IncreasePlayCount(26000000);
+
+        // Test prekondisi penambahan video null
+        user.AddVideo(null);
+
+        // Test prekondisi username kosong
+        SayaTubeUser gagalUser = new SayaTubeUser(null);
+
+        // Test overflow batas integer pada play count
+        for (int i = 0; i < 86; i++)
+        {
+            film[5].IncreasePlayCount(25000000);
+        }
     }
 }
